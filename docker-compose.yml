@@ -5,9 +5,20 @@ services:
     restart: unless-stopped
     environment:
       - TS3SERVER_LICENSE=accept
-    network_mode: host
+    ports:
+      - "9987:9987/udp"
+      # - "30033:30033/tcp"
+      # - "10011:10011/tcp"
     volumes:
       - ts3data:/var/ts3server
+    networks:
+      - tsnet
+
 volumes:
   ts3data:
     driver: local
+
+networks:
+  tsnet:
+    external: true
+    name: tsnet
