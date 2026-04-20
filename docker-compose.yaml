@@ -12,7 +12,7 @@ services:
     volumes:
       - ts3data:/var/ts3server
     networks:
-      - tsnet
+      tsnet:
 
 volumes:
   ts3data:
