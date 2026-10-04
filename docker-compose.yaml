@@ -1,5 +1,16 @@
 version: "3.8"
 services:
+  ts3exporter:
+    image: denniswitt/ts3exporter:latest
+    restart: unless-stopped
+    environment:
+      - REMOTE=teamspeak:10011
+      - SERVERQUERY_PASSWORD=${TS3_QUERY_PASSWORD}
+      - ENABLE_CHANNEL_METRICS=1
+    ports:
+      - "127.0.0.1:9189:9189"
+    depends_on:
+      - teamspeak
   teamspeak:
     image: teamspeak:3.13.7
     restart: unless-stopped
